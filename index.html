@@ -1,29 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat&family=Oswald:wght@300&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css" />
     <title>tic tac toe</title>
-    <div id="board">
+    <div class="container">
+        <h1 class="neon-text--blue">T<span class="neon-text--pink">I</span class="neon-text--pink">C T<span class="neon-text--pink">A</span>C T<span class="neon-text--pink">O</span>E</h1>
+        <p id="currentPlayer">X play</p>
+      <div id="board">
         <div class="row">
-            <div class="cell c1" id="c1"></div>
-            <div class="cell c2" id="c2"></div>
-            <div class="cell c3" id="c3"></div>
+          <div class="cell cell--right-bottom-border" id="00"></div>
+          <div class="cell cell--right-bottom-border" id="01"></div>
+          <div class="cell cell--bottom-border" id="02"></div>
         </div>
         <div class="row">
-            <div class="cell c4" id="c4"></div>
-            <div class="cell c5" id="c5"></div>
-            <div class="cell c6" id="c6"></div>
+          <div class="cell cell--right-bottom-border" id="10"></div>
+          <div class="cell cell--right-bottom-border" id="11"></div>
+          <div class="cell cell--bottom-border" id="12"></div>
         </div>
         <div class="row">
-            <div class="cell c7" id="c7"></div>
-            <div class="cell c8" id="c8"></div>
-            <div class="cell c9" id="c9"></div>
+          <div class="cell cell--right-border" id="20"></div>
+          <div class="cell cell--right-border" id="21"></div>
+          <div class="cell" id="22"></div>
         </div>
+      </div>
     </div>
-</head>
-<body>
+  </head>
+  <body>
+    <script src="ticTacToe.js"></script>
     <script src="app.js"></script>
-</body>
+  </body>
 </html>
