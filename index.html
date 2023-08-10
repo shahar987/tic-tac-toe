@@ -4,13 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat&family=Oswald:wght@300&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Montserrat:wght@200&family=Oswald:wght@300&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css" />
     <title>tic tac toe</title>
+    
     <div class="container">
-        <h1 class="neon-text--blue">T<span class="neon-text--pink">I</span class="neon-text--pink">C T<span class="neon-text--pink">A</span>C T<span class="neon-text--pink">O</span>E</h1>
-        <p id="currentPlayer">X play</p>
+        <div class="game-detailes">
+            <h1 class="neon-text--blue">T<span class="neon-text--pink">I</span class="neon-text--pink">C T<span class="neon-text--pink">A</span>C T<span class="neon-text--pink">O</span>E</h1>
+            <p class="history">player <span class="neon-text--blue">X</span> : <span id="playerXRes"></span> | player <span class="neon-text--pink">O</span> : <span id="playerORes"></span></p>
+            <p class=""></p>
+            <p id="currentPlayer" class="currentPlayer neon-text--white"></p>
+        </div>
       <div id="board">
         <div class="row">
           <div class="cell cell--right-bottom-border" id="00"></div>
@@ -28,7 +35,14 @@
           <div class="cell" id="22"></div>
         </div>
       </div>
+      <div class="popup">
+        <div class="popup__content">
+            <p class="message"></p>
+            <button id="reset">Play Again</button>
+        </div>
+      </div>
     </div>
+    
   </head>
   <body>
     <script src="ticTacToe.js"></script>

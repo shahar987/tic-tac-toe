@@ -14,36 +14,37 @@ class TicTacToe {
     this.history = history;
     this.currentPlayer = currentPlayer;
   }
-  switchPlayer(){
-    if(this.currentPlayer=== "x"){
-        this.currentPlayer = "o"
-    }
-    else{
-        this.currentPlayer = "x"
+
+
+  switchPlayer() {
+    if (this.currentPlayer === "x") {
+      this.currentPlayer = "o";
+    } else {
+      this.currentPlayer = "x";
     }
   }
 
   chooseCell(position) {
     const positionAvailable =
       this.board[position[0]][position[1]] === null ? true : false;
-    if (positionAvailable) {
+    if (positionAvailable && this.status === "playing") {
       this.board[position[0]][position[1]] = this.currentPlayer;
-      this.checkStatus()
-      this.switchPlayer()
+      this.checkStatus();
+      this.switchPlayer();
       return true;
     } else {
       return false;
     }
   }
 
-  reset(){
+  reset() {
     this.board = [
-        [null, null, null],
-        [null, null, null],
-        [null, null, null],
-      ]
-    this.currentPlayer = "x"
-    this.status = "playing"
+      [null, null, null],
+      [null, null, null],
+      [null, null, null],
+    ];
+    this.currentPlayer = "x";
+    this.status = "playing";
   }
 
   checkIfBoardFull() {
@@ -58,6 +59,14 @@ class TicTacToe {
     return full;
   }
 
+  updateWinningHistory(){
+    if(this.currentPlayer === "x"){
+      this.history.playerX += 1
+    }else{
+      this.history.playerO +=1
+    }
+  }
+
   checkStatus() {
     if (!this.checkIfBoardFull()) {
       //row one win
@@ -66,7 +75,8 @@ class TicTacToe {
         this.board[0][0] === this.board[0][2] &&
         this.board[0][0] !== null
       ) {
-        this.status = `${this.currentPlayer} win`
+        this.updateWinningHistory()
+        this.status = `Player ${this.currentPlayer} won !`;
       }
       //row tow win
       else if (
@@ -74,7 +84,8 @@ class TicTacToe {
         this.board[1][0] === this.board[1][2] &&
         this.board[1][0] !== null
       ) {
-        this.status = `${this.currentPlayer} win`
+        this.updateWinningHistory()
+        this.status = `Player ${this.currentPlayer} won !`;
       }
       //row three win
       else if (
@@ -82,7 +93,8 @@ class TicTacToe {
         this.board[2][0] === this.board[2][2] &&
         this.board[2][0] !== null
       ) {
-        this.status = `${this.currentPlayer} win`
+        this.updateWinningHistory()
+        this.status = `Player ${this.currentPlayer} won !`;
       }
       //column one win
       else if (
@@ -90,7 +102,8 @@ class TicTacToe {
         this.board[0][0] === this.board[2][0] &&
         this.board[0][0] !== null
       ) {
-        this.status = `${this.currentPlayer} win`
+        this.updateWinningHistory()
+        this.status = `Player ${this.currentPlayer} won !`;
       }
       //column tow win
       else if (
@@ -98,7 +111,8 @@ class TicTacToe {
         this.board[0][1] === this.board[2][1] &&
         this.board[0][1] !== null
       ) {
-        this.status = `${this.currentPlayer} win`
+        this.updateWinningHistory()
+        this.status = `Player ${this.currentPlayer} won !`;
       }
       //column three win
       else if (
@@ -106,7 +120,8 @@ class TicTacToe {
         this.board[0][2] === this.board[2][2] &&
         this.board[0][2]
       ) {
-        this.status = `${this.currentPlayer} win`
+        this.updateWinningHistory()
+        this.status = `Player ${this.currentPlayer} won !`;
       }
       //left diagonal win
       else if (
@@ -114,7 +129,8 @@ class TicTacToe {
         this.board[0][0] === this.board[2][2] &&
         this.board[0][0]
       ) {
-        this.status = `${this.currentPlayer} win`
+        this.updateWinningHistory()
+        this.status = `Player ${this.currentPlayer} won !`;
       }
       //right diagonal win
       else if (
@@ -122,7 +138,8 @@ class TicTacToe {
         this.board[0][2] === this.board[2][0] &&
         this.board[0][2]
       ) {
-        this.status = `${this.currentPlayer} win`
+        this.updateWinningHistory()
+        this.status = `Player ${this.currentPlayer} won !`;
       }
       //playing
       else {
@@ -132,9 +149,7 @@ class TicTacToe {
 
     //no one win
     else {
-      this.status = "fail"
+      this.status = "Board Stuck";
     }
   }
 }
-
-
