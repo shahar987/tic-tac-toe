@@ -15,6 +15,10 @@ class TicTacToe {
     this.currentPlayer = currentPlayer;
   }
 
+  get allGameDate() {
+    return this;
+  }
+
   switchPlayer() {
     if (this.currentPlayer === "x") {
       this.currentPlayer = "o";
@@ -58,97 +62,93 @@ class TicTacToe {
     return full;
   }
 
-  updateWinningHistory(){
-    if(this.currentPlayer === "x"){
-      this.history.playerX += 1
-    }else{
-      this.history.playerO +=1
+  updateWinningHistory() {
+    if (this.currentPlayer === "x") {
+      this.history.playerX += 1;
+    } else {
+      this.history.playerO += 1;
     }
   }
 
   checkStatus() {
-    if (!this.checkIfBoardFull()) {
-      //row one win
-      if (
-        this.board[0][0] === this.board[0][1] &&
-        this.board[0][0] === this.board[0][2] &&
-        this.board[0][0] !== null
-      ) {
-        this.updateWinningHistory()
-        this.status = `Player ${this.currentPlayer} won !`;
-      }
-      //row tow win
-      else if (
-        this.board[1][0] === this.board[1][1] &&
-        this.board[1][0] === this.board[1][2] &&
-        this.board[1][0] !== null
-      ) {
-        this.updateWinningHistory()
-        this.status = `Player ${this.currentPlayer} won !`;
-      }
-      //row three win
-      else if (
-        this.board[2][0] === this.board[2][1] &&
-        this.board[2][0] === this.board[2][2] &&
-        this.board[2][0] !== null
-      ) {
-        this.updateWinningHistory()
-        this.status = `Player ${this.currentPlayer} won !`;
-      }
-      //column one win
-      else if (
-        this.board[0][0] === this.board[1][0] &&
-        this.board[0][0] === this.board[2][0] &&
-        this.board[0][0] !== null
-      ) {
-        this.updateWinningHistory()
-        this.status = `Player ${this.currentPlayer} won !`;
-      }
-      //column tow win
-      else if (
-        this.board[0][1] === this.board[1][1] &&
-        this.board[0][1] === this.board[2][1] &&
-        this.board[0][1] !== null
-      ) {
-        this.updateWinningHistory()
-        this.status = `Player ${this.currentPlayer} won !`;
-      }
-      //column three win
-      else if (
-        this.board[0][2] === this.board[1][2] &&
-        this.board[0][2] === this.board[2][2] &&
-        this.board[0][2]
-      ) {
-        this.updateWinningHistory()
-        this.status = `Player ${this.currentPlayer} won !`;
-      }
-      //left diagonal win
-      else if (
-        this.board[0][0] === this.board[1][1] &&
-        this.board[0][0] === this.board[2][2] &&
-        this.board[0][0]
-      ) {
-        this.updateWinningHistory()
-        this.status = `Player ${this.currentPlayer} won !`;
-      }
-      //right diagonal win
-      else if (
-        this.board[0][2] === this.board[1][1] &&
-        this.board[0][2] === this.board[2][0] &&
-        this.board[0][2]
-      ) {
-        this.updateWinningHistory()
-        this.status = `Player ${this.currentPlayer} won !`;
-      }
-      //playing
-      else {
-        this.status = "playing";
-      }
+    //row one win
+    if (
+      this.board[0][0] === this.board[0][1] &&
+      this.board[0][0] === this.board[0][2] &&
+      this.board[0][0] !== null
+    ) {
+      this.updateWinningHistory();
+      this.status = `Player ${this.currentPlayer} won !`;
     }
-
-    //no one win
-    else {
+    //row tow win
+    else if (
+      this.board[1][0] === this.board[1][1] &&
+      this.board[1][0] === this.board[1][2] &&
+      this.board[1][0] !== null
+    ) {
+      this.updateWinningHistory();
+      this.status = `Player ${this.currentPlayer} won !`;
+    }
+    //row three win
+    else if (
+      this.board[2][0] === this.board[2][1] &&
+      this.board[2][0] === this.board[2][2] &&
+      this.board[2][0] !== null
+    ) {
+      this.updateWinningHistory();
+      this.status = `Player ${this.currentPlayer} won !`;
+    }
+    //column one win
+    else if (
+      this.board[0][0] === this.board[1][0] &&
+      this.board[0][0] === this.board[2][0] &&
+      this.board[0][0] !== null
+    ) {
+      this.updateWinningHistory();
+      this.status = `Player ${this.currentPlayer} won !`;
+    }
+    //column tow win
+    else if (
+      this.board[0][1] === this.board[1][1] &&
+      this.board[0][1] === this.board[2][1] &&
+      this.board[0][1] !== null
+    ) {
+      this.updateWinningHistory();
+      this.status = `Player ${this.currentPlayer} won !`;
+    }
+    //column three win
+    else if (
+      this.board[0][2] === this.board[1][2] &&
+      this.board[0][2] === this.board[2][2] &&
+      this.board[0][2]
+    ) {
+      this.updateWinningHistory();
+      this.status = `Player ${this.currentPlayer} won !`;
+    }
+    //left diagonal win
+    else if (
+      this.board[0][0] === this.board[1][1] &&
+      this.board[0][0] === this.board[2][2] &&
+      this.board[0][0]
+    ) {
+      this.updateWinningHistory();
+      this.status = `Player ${this.currentPlayer} won !`;
+    }
+    //right diagonal win
+    else if (
+      this.board[0][2] === this.board[1][1] &&
+      this.board[0][2] === this.board[2][0] &&
+      this.board[0][2]
+    ) {
+      this.updateWinningHistory();
+      this.status = `Player ${this.currentPlayer} won !`;
+    //tie
+    } else if (this.checkIfBoardFull()) {
       this.status = "It's a tie";
+    }
+    //playing
+    else {
+      this.status = "playing";
     }
   }
 }

@@ -1,12 +1,20 @@
-const game = new TicTacToe();
+let gameData = JSON.parse(localStorage.getItem('game'));
+let game = new  TicTacToe()
+if(gameData !== null){
+    const {status,board, history, currentPlayer} = gameData
+    game = new TicTacToe(status,board, history, currentPlayer)
+}
+
 
 const cells = document.querySelectorAll(".cell");
 cells.forEach((cell) => {
   cell.addEventListener("click", (e) => {
     playMove(e.target.id);
+    addToLocalStorage();
   });
 });
 
+//show wining history
 const renderHistory = (history) => {
   const { playerX, playerO } = history;
   const playerXRes = document.getElementById("playerXRes");
@@ -15,6 +23,7 @@ const renderHistory = (history) => {
   playerORes.textContent = playerO;
 };
 
+//show current player
 const renderCurrentPlayer = () => {
   let currentPlayer = game.currentPlayer;
   const currPlayerElement = document.getElementById("currentPlayer");
@@ -23,6 +32,7 @@ const renderCurrentPlayer = () => {
   currPlayerElement.textContent = currentPlayer;
 };
 
+//show current player move on board
 const renderMove = (cellId, currentPlayer) => {
   const cell = document.getElementById(cellId);
   if (currentPlayer === "x") {
@@ -38,6 +48,8 @@ const renderMove = (cellId, currentPlayer) => {
   }
   if (game.status !== "playing") showPopup();
 };
+
+
 const playMove = (cellId) => {
   const position = cellId.split("").map(Number);
   const currentPlayer = game.currentPlayer;
@@ -45,6 +57,7 @@ const playMove = (cellId) => {
     renderMove(cellId, currentPlayer);
   }
   renderCurrentPlayer();
+  
 };
 
 const renderBoard = () => {
@@ -74,7 +87,6 @@ const removePopup = () => {
 };
 
 const startGame = () => {
-  const currentPlayer = game.currentPlayer;
   const history = game.history;
   renderBoard();
   renderCurrentPlayer();
@@ -86,9 +98,14 @@ const resetGame = () => {
   game.reset();
   removePopup();
   startGame();
+  addToLocalStorage();
 };
 
-startGame();
+const addToLocalStorage=()=>{
+    const gameData = game.allGameDate
+    localStorage.setItem('game', JSON.stringify(gameData));
+}
 
+startGame();
 const resetButton = document.getElementById("reset");
 resetButton.addEventListener("click", () => resetGame());
