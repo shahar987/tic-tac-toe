@@ -11,26 +11,29 @@ const renderHistory = (history) => {
   const { playerX, playerO } = history;
   const playerXRes = document.getElementById("playerXRes");
   const playerORes = document.getElementById("playerORes");
-  playerXRes.textContent = playerX
-  playerORes.textContent = playerO
-
+  playerXRes.textContent = playerX;
+  playerORes.textContent = playerO;
 };
 
-const renderCurrentPlayer = (currentPlayer) => {
+const renderCurrentPlayer = () => {
+  let currentPlayer = game.currentPlayer;
   const currPlayerElement = document.getElementById("currentPlayer");
   currentPlayer = currentPlayer.toUpperCase();
-  currPlayerElement.textContent = `Player ${currentPlayer}`;
+  currPlayerElement.className = currentPlayer === "X" ? "currentPlayer neon-text--blue" : "currentPlayer neon-text--pink"
+  currPlayerElement.textContent = currentPlayer;
 };
 
 const renderMove = (cellId, currentPlayer) => {
   const cell = document.getElementById(cellId);
   if (currentPlayer === "x") {
-    const x = document.createElement("div");
-    x.className = "x";
+    const x = document.createElement("p");
+    x.textContent = "X";
+    x.className = "neon-text--blue";
     cell.appendChild(x);
   } else {
-    const circle = document.createElement("div");
-    circle.className = "circle";
+    const circle = document.createElement("p");
+    circle.textContent = "O";
+    circle.className = "neon-text--pink";
     cell.appendChild(circle);
   }
   if (game.status !== "playing") showPopup();
@@ -38,10 +41,10 @@ const renderMove = (cellId, currentPlayer) => {
 const playMove = (cellId) => {
   const position = cellId.split("").map(Number);
   const currentPlayer = game.currentPlayer;
-  renderCurrentPlayer(currentPlayer);
   if (game.chooseCell(position)) {
     renderMove(cellId, currentPlayer);
   }
+  renderCurrentPlayer();
 };
 
 const renderBoard = () => {
@@ -74,7 +77,7 @@ const startGame = () => {
   const currentPlayer = game.currentPlayer;
   const history = game.history;
   renderBoard();
-  renderCurrentPlayer(currentPlayer);
+  renderCurrentPlayer();
   renderHistory(history);
   if (game.status !== "playing") showPopup();
 };

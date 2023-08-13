@@ -15,7 +15,6 @@ class TicTacToe {
     this.currentPlayer = currentPlayer;
   }
 
-
   switchPlayer() {
     if (this.currentPlayer === "x") {
       this.currentPlayer = "o";
@@ -149,7 +148,7 @@ class TicTacToe {
 
     //no one win
     else {
-      this.status = "Board Stuck";
+      this.status = "It's a tie";
     }
   }
 }
