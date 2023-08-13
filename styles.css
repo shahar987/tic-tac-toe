@@ -144,28 +144,24 @@ th {
   left: 0;
   top: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(2px);
   display: none;
 }
-.popup--container{
-    width: 60%;
-    height: 30%;
-    animation-name: popup-enter;
-    animation-duration: 1s;
-    margin: 10% auto;
+.popup--container {
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-@keyframes popup-enter {
-    from {opacity: 0;}
-    to {opacity: 1;}
-  }
+
 .popup__content {
   background-color: #333333;
-  padding: 2.5rem;
-  width: 100%;
-  height: 100%;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -173,8 +169,17 @@ th {
   border-radius: 0.313rem;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.4),
     0 0 20px rgba(255, 255, 255, 0.4);
+  animation-name: popup-enter;
+  animation-duration: 1s;
 }
-
+@keyframes popup-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
 .popup__content button {
   cursor: pointer;
@@ -185,21 +190,25 @@ th {
   height: 2.5rem;
   width: 9.375rem;
   letter-spacing: 0.4rem;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   text-shadow: 0 0 1px #fff, 0 0 1px #fff, 0 0 1px #fff, 0 0 2px #0fa,
     0 0 3px #0fa, 0 0 4px #0fa, 0 0 5px #0fa, 0 0 7px #0fa;
   box-shadow: 0 0 1px #fff, 0 0 1px #fff, 0 0 1px #fff, 0 0 2px #0fa,
     0 0 3px #0fa, 0 0 4px #0fa, 0 0 5px #0fa, 0 0 7px #0fa;
-    animation: popup-button-enter 1s;
+  animation: popup-button-enter 1s;
 }
 
 @keyframes popup-button-enter {
-    from {opacity: 0;}
-    to {opacity: 1;}
+  from {
+    opacity: 0;
   }
+  to {
+    opacity: 1;
+  }
+}
 
 .popup__content button:hover {
-    transition-delay: 0.1s;
+  transition-delay: 0.1s;
   text-shadow: 0 0 1px #fff, 0 0 1px #fff, 0 0 1px #fff, 0 0 2px #fb33a8,
     0 0 3px #fb33a8, 0 0 4px #fb33a8, 0 0 5px #fb33a8, 0 0 7px #fb33a8;
   box-shadow: 0 0 1px #fff, 0 0 1px #fff, 0 0 1px #fff, 0 0 2px #fb33a8,
@@ -208,15 +217,20 @@ th {
 
 .popup__content p {
   font-weight: 700;
-  font-size: 3rem;
+  font-size: 2.5rem;
   color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 2rem;
   animation: popup-button-text 1s;
 }
 
 @keyframes popup-button-text {
-    from {opacity: 0;}
-    to {opacity: 1;}
+  from {
+    opacity: 0;
   }
+  to {
+    opacity: 1;
+  }
+}
 
 .show {
   display: block;

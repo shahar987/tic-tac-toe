@@ -1,18 +1,10 @@
+//get game data from localStorage
 let gameData = JSON.parse(localStorage.getItem('game'));
 let game = new  TicTacToe()
 if(gameData !== null){
     const {status,board, history, currentPlayer} = gameData
     game = new TicTacToe(status,board, history, currentPlayer)
 }
-
-
-const cells = document.querySelectorAll(".cell");
-cells.forEach((cell) => {
-  cell.addEventListener("click", (e) => {
-    playMove(e.target.id);
-    addToLocalStorage();
-  });
-});
 
 //show wining history
 const renderHistory = (history) => {
@@ -60,6 +52,7 @@ const playMove = (cellId) => {
   
 };
 
+//show board status
 const renderBoard = () => {
   for (let row = 0; row < game.board.length; row++) {
     for (let col = 0; col < game.board[row].length; col++) {
@@ -74,6 +67,7 @@ const renderBoard = () => {
   }
 };
 
+//display popup when game end
 const showPopup = () => {
   const popup = document.querySelector(".popup");
   const message = document.querySelector(".message");
@@ -81,11 +75,13 @@ const showPopup = () => {
   popup.classList.add("show");
 };
 
+//remove popup when user click play again
 const removePopup = () => {
   const popup = document.querySelector(".popup");
   popup.classList.remove("show");
 };
 
+//start the game
 const startGame = () => {
   const history = game.history;
   renderBoard();
@@ -94,6 +90,7 @@ const startGame = () => {
   if (game.status !== "playing") showPopup();
 };
 
+//reset game to start
 const resetGame = () => {
   game.reset();
   removePopup();
@@ -101,10 +98,20 @@ const resetGame = () => {
   addToLocalStorage();
 };
 
+//add game data to localStorage
 const addToLocalStorage=()=>{
     const gameData = game.allGameDate
     localStorage.setItem('game', JSON.stringify(gameData));
 }
+
+//add playMove function to cell
+const cells = document.querySelectorAll(".cell");
+cells.forEach((cell) => {
+  cell.addEventListener("click", (e) => {
+    playMove(e.target.id);
+    addToLocalStorage();
+  });
+});
 
 startGame();
 const resetButton = document.getElementById("reset");
